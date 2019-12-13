@@ -48,6 +48,8 @@ public class DataSourceConfiguration {
     public SqlSessionFactory dbOneSqlSessionFactory(@Qualifier("dataSource") DataSource dataSource) throws Exception {
         final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
+        sessionFactory.setTypeAliasesPackage(
+                "com.netease.yj.springboottest.model.po");
         sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*Mapper.xml"));
         return sessionFactory.getObject();
     }
